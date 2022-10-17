@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<!-- Controller return 값의 경로 -->
+	<!-- *의 내용이 put-attribute의 {1},{2}... 안에 들어간다. -->
+	<definition name="/board/*" extends="tilesLayout">
+		<put-attribute name="body" value="/WEB-INF/views/board/{1}.jsp" />
+	</definition>
+		
+	<definition name="tilesLayout" template="/WEB-INF/views/layout/TilesLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+ 
+</tiles-definitions>

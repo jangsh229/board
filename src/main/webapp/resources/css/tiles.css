@@ -1,0 +1,170 @@
+/* header, footer, 공통 */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    font-family: -apple-system,BlinkMacSystemFont,malgun gothic,맑은 고딕,helvetica,apple sd gothic neo,sans-serif;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+#body-wrap {
+    min-height: 100%;
+    position: relative;
+}
+
+#content-wrap {
+    padding-bottom: 80px;
+}
+
+#body {
+    max-width: 1080px;
+    margin: auto;
+    padding: 20px 20px 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.header {
+    height: 40px;
+    padding: 10px 15px;
+    background-color: white;
+    border-bottom: 0.5px solid rgba(135, 135, 135, 0.597);
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.nav__menu a, .footer p {
+    color: black;
+    font-weight: 500;
+    
+}
+
+.nav__menu a {
+    display: none;
+}
+
+.header__wrap {
+    width: 1080px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__wrap a {
+    letter-spacing: -1px;
+    font-size: 14px;
+}
+
+.header__logo h1 {
+    font: bold 25px 'arial';
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: rgb(50, 49, 49);
+    padding-right: 0 5px 0 0;
+    white-space: nowrap;
+}
+
+.header__logo p {
+    font-size: 12px;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav__menu {
+    margin-left: 50px;
+}
+
+.nav__menu a {
+    font-weight: 500;
+}
+
+.nav__menu a:hover { /*마우스가 올라갔을 때*/
+    color: rgba(0,144,249,.5);
+    border-radius: 6px;
+}
+
+.nav__right a {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 17px;
+    border-radius: 20px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.btn-square {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 13px;
+    border-radius: 6px;
+    margin: 0 2px;
+}
+
+.btn-grey {
+    color: rgb(50, 49, 49);
+    border: 1.5px solid rgba(135, 135, 135, 0.597);
+}
+
+.btn-white {
+    color: rgb(19 127 206);
+    border: 1.5px solid rgba(0,144,249,.5);
+}
+
+.btn-white:hover, .btn_grey:hover {
+    background-color: rgba(212, 212, 212, 0.295);
+}
+
+.btn-blue {
+    color: white;
+    background-color: rgb(37 146 225);
+}
+
+.btn-blue:hover {
+    background-color: rgba(19, 128, 206, 0.582);
+}
+
+.footer {
+    height: 80px;
+    background-color: white;
+    border-top: 0.5px solid rgba(135, 135, 135, 0.597);
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.footer__wrap {
+    width: 1080px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer__left {
+    margin-right: 40px;
+}

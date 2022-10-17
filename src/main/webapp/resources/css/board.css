@@ -1,0 +1,164 @@
+@charset "UTF-8";
+.rap-content {
+    margin: auto;
+    width: 100%;
+}
+
+h3 {
+    /* text-align: center; */
+}
+
+.in-content {
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btm {
+    margin-top: 2px;
+    position: relative;
+}
+
+.flex-mn {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fl {
+    margin-right: auto;
+    display: flex;
+}
+
+.fr {
+    display: flex;
+}
+
+.text-mid {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.text-sm {
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.text-grey {
+    color: rgb(199, 194, 194);
+}
+
+.clear {  /*float된 요소 뒤의 요소 다음 줄로 보내기*/
+    clear:both;
+}
+
+.write table {
+    width: 100%;
+}
+
+.write td input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+}
+
+.write textarea {
+    height: 300px;
+}
+
+.write-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.write button {
+    margin: 0 2px;
+}
+
+
+.list table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.list th {
+    font-size: 13px;
+    white-space: nowrap;
+    background-color: rgba(221, 221, 221, 0.205);;
+}
+
+.list tr {
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+}
+
+.list tr:hover {
+    background-color: rgba(221, 221, 221, 0.103);
+}
+
+.list td, th {
+    padding: 6px 10px;
+    text-align: center;
+}
+
+.list td {
+    font-size: 15px;
+}
+
+.list .subject {
+    text-align: left;
+}
+
+.list .subject a:hover {
+    text-decoration: grey solid 0.5px underline;
+}
+
+.detail .detail-header {
+    padding-bottom: 
+}
+
+.detail .detail-header h2 {
+    font-size: 22px;
+}
+
+.detail .header-bottom {
+    padding: 2px 5px 10px 5px;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+}
+
+.detail .content {
+    padding: 0 5px 50px 5px;
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+}
+
+/* --- pageBtn --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-btn {
+    float: left;
+    margin: 0;
+}
+
+.page-btn a {
+    min-width: 30px;
+    min-height: 30px;
+    line-height: 27px;
+    display: block;
+    text-align: center;
+}
+
+.active a {
+    background-color: rgb(37 146 225);
+    border-radius: 20px;
+    color: white;
+}
