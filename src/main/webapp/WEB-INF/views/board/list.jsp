@@ -51,7 +51,7 @@
 	            </li> 
 	        </c:if> 
 	        <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }"> 
-	            <li class="page-btn ${pageMaker.pageNum == num ? 'active' : '' }">
+	            <li class="page-btn ${pageMaker.cri.pg == num ? 'active' : '' }">
 	                <a class="page-link" href="#" onclick="fn_goList(${num})">${num}</a> 
 	            </li>
 	        </c:forEach>

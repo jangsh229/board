@@ -1,12 +1,12 @@
 package com.board.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.board.domain.BoardDTO;
+import com.board.domain.Criteria;
 
 public interface BoardDAO {
-	public List<BoardDTO> getList(Map<String, Integer> map);
+	public List<BoardDTO> getList(Criteria cri);
 	public int write(BoardDTO dto);
 	public BoardDTO detail(int seq);
 	public void updateReadCount(int seq);

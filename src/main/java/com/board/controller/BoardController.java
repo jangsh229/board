@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.domain.BoardDTO;
@@ -22,10 +21,9 @@ public class BoardController {
 	private BoardService service;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
-		Criteria cri = new Criteria(Integer.parseInt(pg), 10); // 페이지 범위 객체 생성 (현재 페이지, 페이지에 보여줄 데이터 갯수)
+	public String list(Criteria cri, Model model) {
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, 5, service.getTotal())); // (cri, 페이지 버튼 갯수, 데이터 갯수)
+		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal()));
 		return "/board/list";
 	}
 
@@ -78,4 +76,5 @@ public class BoardController {
 			return "N";
 		}
 	}
+
 }

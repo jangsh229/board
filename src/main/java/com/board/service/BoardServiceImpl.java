@@ -1,8 +1,6 @@
 package com.board.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,14 +24,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardDTO> getList(Criteria cri) {
-		// board 테이블에서 가져올 row의 범위를 담은 map 생성
-		int endNum = cri.getPageNum() * cri.getAmount();
-		int startNum = endNum - (cri.getAmount() - 1);
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("endNum", endNum);
-		map.put("startNum", startNum);
-
-		return dao.getList(map);
+		return dao.getList(cri);
 	}
 
 	@Override
