@@ -14,5 +14,5 @@ public interface BoardService {
 	public BoardDTO detail(int seq, HttpServletRequest request, HttpServletResponse response);
 	public int update(BoardDTO dto);
 	public int delete(int seq);
-	public int getTotal();
+	public int getTotal(Criteria cri);
 }

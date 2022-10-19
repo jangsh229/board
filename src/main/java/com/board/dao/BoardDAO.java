@@ -12,5 +12,5 @@ public interface BoardDAO {
 	public void updateReadCount(int seq);
 	public int update(BoardDTO dto);
 	public int delete(int seq);
-	public int getTotal();
+	public int getTotal(Criteria cri);
 }

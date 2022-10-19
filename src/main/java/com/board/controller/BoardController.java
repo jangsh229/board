@@ -24,7 +24,7 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal()));
+		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
 		return "/board/list";
 	}
 
