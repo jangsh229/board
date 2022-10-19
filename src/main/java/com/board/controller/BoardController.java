@@ -1,6 +1,7 @@
 package com.board.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,15 +44,15 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String view(String seq, Model model) {
-		BoardDTO dto = service.detail(Integer.parseInt(seq));
+	public String view(String seq, HttpServletRequest request, HttpServletResponse response, Model model) {
+		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
 		return "/board/detail";
 	}
 
 	@RequestMapping(value = "/goUpdate", method = RequestMethod.POST)
-	public String updateView(Model model, HttpServletRequest request) {
-		BoardDTO dto = service.detail(Integer.parseInt(request.getParameter("seq")));
+	public String updateView(String seq, HttpServletRequest request, HttpServletResponse response, Model model) {
+		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
 		return "/board/update";
 	}

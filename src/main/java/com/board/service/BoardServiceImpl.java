@@ -17,10 +17,6 @@ import com.board.domain.Criteria;
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO dao;
-	@Autowired
-	private HttpServletRequest request;
-	@Autowired
-	private HttpServletResponse response;
 
 	@Override
 	public List<BoardDTO> getList(Criteria cri) {
@@ -33,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardDTO detail(int seq) {
+	public BoardDTO detail(int seq, HttpServletRequest request, HttpServletResponse response) {
 		// 조회수 증가 방지용 쿠키 생성여부 확인
 		Cookie[] cookies = request.getCookies();
 		Cookie viewCookie = null;

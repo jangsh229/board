@@ -7,9 +7,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.platform.commons.logging.LoggerFactory;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -39,7 +37,7 @@ public class DataSourceTest {
 		assertNotNull(sf);
 	}
 	
-	@Test
+	//@Test
 	public void log4jTest()throws Exception{
 		log.info("log4j 테스트");
 	}
