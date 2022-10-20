@@ -87,5 +87,34 @@ function fn_delete(seq) {
 }
 
 function fn_goList(pg){
-	location.href = "/board/list?pg="+pg;
+	var f = $('#action-frm');
+	var keyword = $('#search-keyword').val();
+
+	if(keyword == ''){
+		f.find('input[name="type"]').remove();
+		f.find('input[name="keyword"]').remove();
+	}
+	f.find('input[name="pg"]').val(pg);
+	f.attr("action", "/board/list");
+	f.submit();
 }
+
+function fn_search(){
+	if($('#search-keyword').val()==""){
+		alert('검색어 값은 필수입니다.');
+	} else {
+		$('#search-pg').val('1'); // 검색시 무조건 1페이지로 이동
+		var f = $('#list-search-frm')
+		f.attr("action", "/board/list");
+		f.submit();
+	}
+}
+
+$(function(){
+	// 엔터키로 검색
+	$('#search-keyword').keydown(function(key) { 
+		if (key.keyCode == 13) {
+			fn_search();
+		}
+	});
+});

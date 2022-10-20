@@ -119,6 +119,37 @@ h3 {
     text-decoration: grey solid 0.5px underline;
 }
 
+.list-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.list-search-frm {
+    display: flex;
+}
+
+.list-search input,
+.list-search select {
+    padding: 0 5px;
+    border: 1px solid grey;
+}
+
+.list-search input {
+    height: 27px;
+}
+
+.list-search select {
+    height: 29px;
+}
+
+.list-search a {
+    margin: 0;
+    border-radius: 0px;
+}
+
 .detail .detail-header {
     padding-bottom: 
 }
@@ -150,15 +181,19 @@ h3 {
 }
 
 .page-btn a {
-    min-width: 30px;
-    min-height: 30px;
-    line-height: 27px;
-    display: block;
+    min-width: 25px;
+    min-height: 25px;
+    line-height: 22px;
+    font-size: 14px;
+    display: inline-block;
     text-align: center;
+    margin: 0 2px;
+    border: 1px solid #ccc;
 }
 
 .active a {
-    background-color: rgb(37 146 225);
-    border-radius: 20px;
-    color: white;
+    color: rgb(37 146 225);
+    color: rgb(37 146 225);
+    border: 1px solid rgb(37 146 225);
+    font-weight: bold;
 }
