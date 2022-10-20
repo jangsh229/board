@@ -5,11 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.domain.Criteria;
-import com.board.domain.PageDTO;
-import com.board.service.BoardService;
 
 @Controller
 public class HomeController {
@@ -17,8 +14,8 @@ public class HomeController {
 	private BoardController controller;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String list(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
-		return controller.list(pg, model);
+	public String list(Criteria cri, Model model) {
+		return controller.list(new Criteria(), model);
 	}
 	
 }

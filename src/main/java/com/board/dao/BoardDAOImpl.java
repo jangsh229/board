@@ -1,13 +1,13 @@
 package com.board.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.board.domain.BoardDTO;
+import com.board.domain.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -16,8 +16,8 @@ public class BoardDAOImpl implements BoardDAO {
 	private static String namespace = "boardSql"; //mapper의 namespace와 동일해야 함
 	
 	@Override
-	public List<BoardDTO> getList(Map<String, Integer> map) {
-		return sqlSession.selectList(namespace+".getList", map);
+	public List<BoardDTO> getList(Criteria cri) {
+		return sqlSession.selectList(namespace+".getList", cri);
 	}
 	
 	@Override
@@ -46,7 +46,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public int getTotal() {
-		return sqlSession.selectOne(namespace+".getTotal");
+	public int getTotal(Criteria cri) {
+		return sqlSession.selectOne(namespace+".getTotal", cri);
 	}
 }

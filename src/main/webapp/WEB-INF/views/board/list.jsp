@@ -43,28 +43,46 @@
 	<div class="flex-mn">
 		<a href="#" class="fr btn-blue btn-square" onclick="fn_goWrite()">작성하기</a>
 	</div>
+	<div class="list-search">
+		<form class="list-search-frm" id="list-search-frm" >
+			<input type="hidden" id="search-pg" name="pg" value="${pageMaker.cri.pg}">
+			<select id="search-type" name="type">
+				<option value="B" 
+						<c:out value='${pageMaker.cri.type eq "B" ? "selected" : ""}' />>전체</option>
+				<option value="S"
+						<c:out value='${pageMaker.cri.type eq "S" ? "selected" : ""}' />>제목</option>
+				<option value="C"
+						<c:out value='${pageMaker.cri.type eq "C" ? "selected" : ""}' />>내용</option>
+			</select>
+			<input type="text" id="search-keyword" name="keyword" size="20" placeholder="검색어를 입력하세요" value="${pageMaker.cri.keyword}">
+			<a href="#" class="btn-blue btn-square" id="search-btn" onclick="fn_search()">검색</a>
+		</form>
+	</div>
 	<div class="pagination"> 
 	    <ul> 
 	        <c:if test="${pageMaker.prev}"> 
 	            <li class="page-btn btn-prev">
-	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.startPage-1})">◀</a>
+	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.startPage-1})">&lt;</a>
 	            </li> 
 	        </c:if> 
 	        <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }"> 
-	            <li class="page-btn ${pageMaker.pageNum == num ? 'active' : '' }">
+	            <li class="page-btn ${pageMaker.cri.pg == num ? 'active' : '' }">
 	                <a class="page-link" href="#" onclick="fn_goList(${num})">${num}</a> 
 	            </li>
 	        </c:forEach>
 	        <c:if test="${pageMaker.next}"> 
 	            <li class="page-btn btn-next">
-	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.endPage+1})">▶</a>
+	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.endPage+1})"> &gt;</a>
 	            </li>
 	        </c:if> 
 	    </ul> 
 	</div> 
 </div>
-<form id="frm">
-	<input type="hidden" value="" name="seq" id="seq">	 			
+<form id="action-frm">
+	<input type="hidden" value="${pageMaker.cri.pg}" name="pg">
+	<input type="hidden" value="${pageMaker.cri.type}" name="type">
+	<input type="hidden" value="${pageMaker.cri.keyword}" name="keyword">
+	<input type="hidden" value="" name="seq">
 </form>
 </body>
 </html>

@@ -2,8 +2,20 @@ function fn_list(){
 	location.href = "/board/list";
 }
 
+function fn_goList(pg){
+	var f = $('#action-frm');
+	f.find('input[name="pg"]').val(pg);
+	fn_clearBlankParam(f);
+	f.attr("action", "/board/list");
+	f.submit();
+}
+
 function fn_goDetail(seq){
-	location.href = "/board/detail?seq="+seq;
+	var f = $('#action-frm');
+	f.find('input[name="seq"]').val(seq);
+	fn_clearBlankParam(f);
+	f.attr("action", "/board/detail");
+	f.submit();
 }
 
 function fn_goWrite(){
@@ -11,9 +23,9 @@ function fn_goWrite(){
 }
 
 function fn_goUpdate(seq){
-	$('#seq').val(seq);
-
-	var f = $('#frm');
+	var f = $('#action-frm');
+	f.find('input[name="seq"]').val(seq);
+	fn_clearBlankParam(f);
 	f.attr("action", "/board/goUpdate");
 	f.attr("method", "POST");
 	f.submit();
@@ -86,6 +98,35 @@ function fn_delete(seq) {
 	}
 }
 
-function fn_goList(pg){
-	location.href = "/board/list?pg="+pg;
+function fn_search(){
+	if($('#search-keyword').val()==""){
+		alert('검색어 값은 필수입니다.');
+	} else {
+		$('#search-pg').val('1'); // 검색시 무조건 1페이지로 이동
+		var f = $('#list-search-frm')
+		f.attr("action", "/board/list");
+		f.submit();
+	}
+}
+
+$(function(){
+	// 엔터키로 검색
+	$('#search-keyword').keydown(function(key) { 
+		if (key.keyCode == 13) {
+			fn_search();
+		}
+	});
+});
+
+// url에서 필요없는 파라미터를 삭제해주는 메소드
+function fn_clearBlankParam(form){ 
+	var keyword = form.find('input[name="keyword"]').val();
+	var seq = form.find('input[name="seq"]').val();
+	if(keyword == ''){
+		form.find('input[name="type"]').remove();
+		form.find('input[name="keyword"]').remove();
+	}
+	if(seq == ''){
+		form.find('input[name="seq"]').remove();
+	}
 }

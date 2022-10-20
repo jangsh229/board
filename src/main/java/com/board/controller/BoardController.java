@@ -1,13 +1,13 @@
 package com.board.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.domain.BoardDTO;
@@ -22,10 +22,9 @@ public class BoardController {
 	private BoardService service;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(@RequestParam(required = false, defaultValue = "1") String pg, Model model) {
-		Criteria cri = new Criteria(Integer.parseInt(pg), 10); // 페이지 범위 객체 생성 (현재 페이지, 페이지에 보여줄 데이터 갯수)
+	public String list(Criteria cri, Model model) {
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, 5, service.getTotal())); // (cri, 페이지 버튼 갯수, 데이터 갯수)
+		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
 		return "/board/list";
 	}
 
@@ -45,22 +44,27 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String view(String seq, Model model) {
-		BoardDTO dto = service.detail(Integer.parseInt(seq));
+	public String view(String seq, Criteria cri, 
+						HttpServletRequest request, HttpServletResponse response, Model model) {
+		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
+		model.addAttribute("cri", cri);
 		return "/board/detail";
 	}
 
 	@RequestMapping(value = "/goUpdate", method = RequestMethod.POST)
-	public String updateView(Model model, HttpServletRequest request) {
-		BoardDTO dto = service.detail(Integer.parseInt(request.getParameter("seq")));
+	public String updateView(String seq, Criteria cri, 
+								HttpServletRequest request, HttpServletResponse response, Model model) {
+		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
+		model.addAttribute("cri", cri);
 		return "/board/update";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(BoardDTO dto) {
+	public String update(BoardDTO dto, Criteria cri, Model model) {
+		model.addAttribute("cri", cri);
 		if (service.update(dto) == 1) {
 			return "Y";
 		} else {
@@ -78,4 +82,5 @@ public class BoardController {
 			return "N";
 		}
 	}
+
 }

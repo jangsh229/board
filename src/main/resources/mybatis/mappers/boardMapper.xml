@@ -4,15 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardSql">
 	
-	<select id="getList" parameterType="java.util.Map" resultType="com.board.domain.BoardDTO">
+	<select id="getList" resultType="com.board.domain.BoardDTO"> <!-- 비교연산자 사용을 위해 <!CDATA[[]]> 사용-->
+		<![CDATA[
 		select * 
-		from (
-			select /*+ INDEX_DESC (board board_pk)*/ 
-				rownum rn, seq, subject, content, name, reg_date, readcount 
-			from 
-				board		
+		from(
+		    select /*+ INDEX_DESC(board board_pk)*/ 
+		        rownum rn, seq, subject, content, name, reg_date, readcount
+		    from board
+		    where
+		]]>
+		<include refid="criteria"></include>
+		<![CDATA[		 
+		      rownum <= #{pg} * #{amount}
 		)
-		where rn between #{startNum} and #{endNum}
+		where rn > (#{pg}-1) * #{amount}
+		]]>
 	</select>
 	
 	<insert id="write" parameterType="boardDTO"> <!-- config.xml에서 alias 설정 -->
@@ -51,6 +57,27 @@
 	</delete>
 	
 	<select id="getTotal" resultType="Integer">
-		select count(*) from board
+		select count(*) from board where
+		<include refid="criteria"></include>
+		<![CDATA[
+			seq > 0		
+		]]>
 	</select>
+	
+	<!-- sql코드는 <include>로 사용할 수 있다 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") and ">
+			<choose>
+				<when test="type == 'S'.toString()">
+					subject like '%'||#{keyword}||'%' 						
+				</when>
+				<when test="type == 'C'.toString()">
+					content like '%'||#{keyword}||'%' 						
+				</when>				
+				<when test="type == 'B'.toString">
+					subject like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' 						
+				</when>
+			</choose>		
+		</trim>
+	</sql>
 </mapper>

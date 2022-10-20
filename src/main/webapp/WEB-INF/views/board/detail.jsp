@@ -26,7 +26,7 @@
 		</form>
 		<div class="flex-mn">
 			<div class="fl">
-				<a href="#" class="btn-grey btn-square" onclick='location.href="/board/list"'>목록</a>			
+				<a href="#" class="btn-grey btn-square" onclick="fn_goList(${cri.pg});">목록</a>			
 			</div>
 			<div class="fr">
 				<a href="#" class="btn-grey btn-square" onclick="fn_goUpdate(${detail.seq});">수정</a>
@@ -35,5 +35,11 @@
 		</div>
 	</div>
 </div>
+<form id="action-frm">
+	<input type="hidden" value="${cri.pg}" name="pg">
+	<input type="hidden" value="${cri.type}" name="type">
+	<input type="hidden" value="${cri.keyword}" name="keyword">
+	<input type="hidden" value="" name="seq">
+</form>
 </body>
 </html>
