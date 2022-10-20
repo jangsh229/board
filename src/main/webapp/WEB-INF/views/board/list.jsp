@@ -62,7 +62,7 @@
 	    <ul> 
 	        <c:if test="${pageMaker.prev}"> 
 	            <li class="page-btn btn-prev">
-	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.startPage-1})">◀</a>
+	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.startPage-1})">&lt;</a>
 	            </li> 
 	        </c:if> 
 	        <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }"> 
@@ -72,19 +72,17 @@
 	        </c:forEach>
 	        <c:if test="${pageMaker.next}"> 
 	            <li class="page-btn btn-next">
-	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.endPage+1})">▶</a>
+	                <a class="page-link" href="#" onclick="fn_goList(${pageMaker.endPage+1})"> &gt;</a>
 	            </li>
 	        </c:if> 
 	    </ul> 
 	</div> 
 </div>
-<form id="frm">
-	<input type="hidden" value="" name="seq" id="seq">	 			
-</form>
 <form id="action-frm">
 	<input type="hidden" value="${pageMaker.cri.pg}" name="pg">
 	<input type="hidden" value="${pageMaker.cri.type}" name="type">
 	<input type="hidden" value="${pageMaker.cri.keyword}" name="keyword">
+	<input type="hidden" value="" name="seq">
 </form>
 </body>
 </html>

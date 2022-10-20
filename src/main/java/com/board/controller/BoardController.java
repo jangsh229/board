@@ -44,22 +44,27 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String view(String seq, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String view(String seq, Criteria cri, 
+						HttpServletRequest request, HttpServletResponse response, Model model) {
 		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
+		model.addAttribute("cri", cri);
 		return "/board/detail";
 	}
 
 	@RequestMapping(value = "/goUpdate", method = RequestMethod.POST)
-	public String updateView(String seq, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String updateView(String seq, Criteria cri, 
+								HttpServletRequest request, HttpServletResponse response, Model model) {
 		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
+		model.addAttribute("cri", cri);
 		return "/board/update";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(BoardDTO dto) {
+	public String update(BoardDTO dto, Criteria cri, Model model) {
+		model.addAttribute("cri", cri);
 		if (service.update(dto) == 1) {
 			return "Y";
 		} else {

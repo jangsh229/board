@@ -21,13 +21,19 @@
 					<td><textarea id="content" name="content">${detail.content}</textarea></td>
 				</tr> 
 			</table>
+			<input type="hidden" id="seq" name="seq" value="${detail.seq}">
 			<div class="write-bottom">
 				<a href="#" class="btn-blue btn-square" onclick="fn_boardUpdate()">등록</a>
 				<a href="#" class="btn-grey btn-square" onclick="fn_goDetail(${detail.seq})">취소</a>
 			</div>
-		<input type="hidden" name="seq" id="seq" value="${detail.seq}"> 
 		</form>
 	</div>
 </div>
+<form id="action-frm">
+	<input type="hidden" value="${cri.pg}" name="pg">
+	<input type="hidden" value="${cri.type}" name="type">
+	<input type="hidden" value="${cri.keyword}" name="keyword">
+	<input type="hidden" value="" name="seq">
+</form>
 </body>
 </html>
