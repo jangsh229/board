@@ -36,21 +36,27 @@ function fn_write(){
 	var name = $("#name").val();
 	var content = $("#content").val();
 	
-	$.ajax({
-		type : "POST",
-		url : "/board/write",
-		data : {subject : subject, name : name, content : content},
-		success: function(data){
-			if(data == "Y"){
-				alert("글 등록이 완료되었습니다.");
-				location.href = "/board/list";		
+	if(subject.replace(/\s/g, "").length == 0) {
+		alert('제목은 필수 입력값입니다.')
+	} else if(content.replace(/\s/g, "").length == 0){
+		alert('내용은 필수 입력값입니다.')
+	} else {
+		$.ajax({
+			type : "POST",
+			url : "/board/write",
+			data : {subject : subject, name : name, content : content},
+			success: function(data){
+				if(data == "Y"){
+					alert("글 등록이 완료되었습니다.");
+					location.href = "/board/list";		
+				}
+			},
+			error: function(data){
+				alert("실패");
+				console.log(data);
 			}
-		},
-		error: function(data){
-			alert("실패");
-			console.log(data);
-		}
-	});
+		});
+	}
 };
 
 function fn_boardUpdate(){
@@ -59,21 +65,27 @@ function fn_boardUpdate(){
 	var content = $("#content").val();
 	var seq = $("#seq").val();
 	
-	$.ajax({
-		type : "POST",
-		url : "/board/update",
-		data : {subject : subject, name : name, content : content, seq : seq},
-		success: function(data){
-			if(data == "Y"){
-				alert("글 수정이 완료되었습니다.");
-				fn_goDetail(seq);
+	if(subject.replace(/\s/g, "").length == 0) {
+		alert('제목은 필수 입력값입니다.')
+	} else if(content.replace(/\s/g, "").length == 0){
+		alert('내용은 필수 입력값입니다.')
+	} else {
+		$.ajax({
+			type : "POST",
+			url : "/board/update",
+			data : {subject : subject, name : name, content : content, seq : seq},
+			success: function(data){
+				if(data == "Y"){
+					alert("글 수정이 완료되었습니다.");
+					fn_goDetail(seq);
+				}
+			},
+			error: function(data){
+				alert("실패");
+				console.log(data);
 			}
-		},
-		error: function(data){
-			alert("실패");
-			console.log(data);
-		}
-	});
+		});
+	}
 };
 
 function fn_delete(seq) {
