@@ -59,23 +59,44 @@ h3 {
     clear:both;
 }
 
-.write table {
-    width: 100%;
+.write .rows {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.write td input, textarea {
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 4px;
+.write .row {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgb(221, 221, 221);
 }
 
-.write textarea {
-    height: 300px;
+.write .row span {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    width: 8%;
+    white-space: nowrap;
+}
+
+.write .row input {
+    width: 60%;
+    height: 25px;
+    padding: 3px;
+    border: 1px solid var(--ck-color-base-border);
+    border-radius: 2px;
+}
+
+.write .ck.ck-editor__editable_inline { /* CKEditor */
+    min-height: 300px;
 }
 
 .write-bottom {
     display: flex;
     justify-content: center;
+    margin-top: 8px;
 }
 
 .write button {

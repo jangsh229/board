@@ -4,23 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
 <title>게시판 글작성</title>
 </head>
 <body>
 <div class="in-content">
 	<div class="write">
 		<form id="frm" class="write">
-			<table>
-				<tr>
-					<td><input type="text" placeholder="제목" id="subject" name="subject"></td>
-				</tr>
-				<tr>
-					<td><input type="text" placeholder="작성자" id="name" name="name"></td>
-				</tr>
-				<tr>
-					<td><textarea placeholder="내용" id="content" name="content"></textarea></td>
-				</tr> 
-			</table>
+			<div class="rows">
+				<div class="row">
+					<span>제목</span>
+					<input type="text" id="subject" name="subject">
+				</div>
+				<div class="row">
+					<span>작성자</span>
+					<input type="text" id="name" name="name">
+				</div>
+			</div>
+			<div id="editor" name="content"></div>
 			<div class="write-bottom">
 				<a href="#" class="btn-blue btn-square" onclick="fn_write()">등록</a>
 				<a href="#" class="btn-grey btn-square" onclick="fn_list()">취소</a>
@@ -29,4 +30,16 @@
 	</div>
 </div>
 </body>
+<script>
+	//글작성 에디터(CKEditor) 생성
+	let editor;
+	ClassicEditor
+		.create( document.querySelector( '#editor' ) )
+		.then( newEditor => {
+			editor = newEditor;
+		} )
+		.catch( error => {
+			console.error( error );
+		} );
+</script>
 </html>

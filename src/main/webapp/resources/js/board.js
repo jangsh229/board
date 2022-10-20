@@ -34,7 +34,7 @@ function fn_goUpdate(seq){
 function fn_write(){
 	var subject = $("#subject").val();
 	var name = $("#name").val();
-	var content = $("#content").val();
+	var content = editor.getData();
 	
 	if(subject.replace(/\s/g, "").length == 0) {
 		alert('제목은 필수 입력값입니다.')
@@ -62,7 +62,7 @@ function fn_write(){
 function fn_boardUpdate(){
 	var subject = $("#subject").val();
 	var name = $("#name").val();
-	var content = $("#content").val();
+	var content = editor.getData();
 	var seq = $("#seq").val();
 	
 	if(subject.replace(/\s/g, "").length == 0) {
