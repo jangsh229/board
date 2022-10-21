@@ -32,14 +32,13 @@
 </body>
 <script>
 	//글작성 에디터(CKEditor) 생성
-	let editor;
 	ClassicEditor
-		.create( document.querySelector( '#editor' ) )
-		.then( newEditor => {
-			editor = newEditor;
-		} )
-		.catch( error => {
-			console.error( error );
-		} );
+	.create( document.querySelector( '#editor' ) )
+	.then( newEditor => {
+		editor = newEditor;
+	} )
+	.catch( error => {
+		console.error( error );
+	} );
 </script>
 </html>
