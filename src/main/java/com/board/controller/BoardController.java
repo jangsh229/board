@@ -25,12 +25,12 @@ public class BoardController {
 	public String list(Criteria cri, Model model) {
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
-		return "/board/list";
+		return "board/list";
 	}
 
 	@RequestMapping(value = "/goWrite", method = RequestMethod.GET)
 	public String regiView() {
-		return "/board/write";
+		return "board/write";
 	}
 
 	@ResponseBody
@@ -49,7 +49,7 @@ public class BoardController {
 		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
 		model.addAttribute("cri", cri);
-		return "/board/detail";
+		return "board/detail";
 	}
 
 	@RequestMapping(value = "/goUpdate", method = RequestMethod.POST)
@@ -58,7 +58,7 @@ public class BoardController {
 		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
 		model.addAttribute("cri", cri);
-		return "/board/update";
+		return "board/update";
 	}
 
 	@ResponseBody
