@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.block-center {
+    width: 420px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.block-center form {
+    margin-top: 5px;
+    width: 100%;
+    padding-bottom: 35px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-2 {
+    margin-top: 2px;
+}
+
+.mt-05 {
+    margin-top: 0.5rem;
+}
+
+.row label {
+    font-size: 14px;
+}
+
+.row div input {
+    width: 97%;
+    height: 30px;
+    padding: 3px 5px;
+    border: 1.5px solid rgb(195, 195, 195);
+    border-radius: 3px;
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.regist-btm {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.regist-btm a {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.login-btm {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.login-btm a {
+    text-decoration: underline;
+    color:rgb(37 146 225);
+}
+
+.vali {
+    color: red;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.valiOk {
+    color: rgb(37 146 225);
+    font-size: 14px;
+    margin-top: 2px;
+}

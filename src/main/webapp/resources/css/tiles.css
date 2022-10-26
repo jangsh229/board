@@ -120,9 +120,11 @@ p {
 .btn-square {
     font-size: 13px;
     font-weight: 600;
+    line-height: 25px;
+    white-space: nowrap;
     padding: 6px 13px;
-    border-radius: 6px;
     margin: 0 2px;
+    border-radius: 6px;
 }
 
 .btn-grey {
@@ -135,7 +137,7 @@ p {
     border: 1.5px solid rgba(0,144,249,.5);
 }
 
-.btn-white:hover, .btn_grey:hover {
+.btn-white:hover, .btn-grey:hover {
     background-color: rgba(212, 212, 212, 0.295);
 }
 

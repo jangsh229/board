@@ -8,8 +8,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="${path}/resources/js/board.js"></script>
+	<script src="${path}/resources/js/member.js"></script>
 	<link rel="stylesheet" href="${path}/resources/css/tiles.css">
 	<link rel="stylesheet" href="${path}/resources/css/board.css">
+	<link rel="stylesheet" href="${path}/resources/css/member.css">
 </head>
 <body>
 	<div id="body-wrap">
