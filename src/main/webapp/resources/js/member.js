@@ -102,6 +102,7 @@ $(function(){
     });
 })
 
+//안내문구 표시, 숨김
 function onOffVali(checkText, target){
     var realTarget = target.parent("div").siblings("p");
     if(checkText != ""){

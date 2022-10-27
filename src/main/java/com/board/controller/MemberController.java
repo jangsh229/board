@@ -45,4 +45,9 @@ public class MemberController {
 			return false;
 		}
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return "noTiles/member/login";
+	}
 }

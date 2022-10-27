@@ -66,7 +66,7 @@
             <a href="#" class="btn-blue btn-square" id="mem-regist">회원가입</a>
         </div>
         <div class="login-btm mt-05">
-            <span>이미 회원이신가요? </span><a href="#">로그인</a>
+            <span>이미 회원이신가요? </span><a href="/member/login">로그인</a>
         </div>
     </div>   
 </div>

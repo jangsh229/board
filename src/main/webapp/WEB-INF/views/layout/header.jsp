@@ -18,7 +18,7 @@
 	            </div>
             </nav>
             <div class="nav__right">
-                <a href="#" class="btn-white">로그인</a>
+                <a href="/member/login" class="btn-white">로그인</a>
                 <a href="/member/signup" class="btn-blue">회원가입</a>
             </div>
         </div>
