@@ -8,8 +8,11 @@
 <body>
 <div class="in-content"> 
     <div class="block-center">
-        <h2 class="text-center">💙Board에 오신 것을 환영합니다.</h2>
-        <p class="text-center mt-10">회원가입에 필요한 기본 정보를 입력해주세요.</p>
+        <a href="/" class="header__logo">
+            <h1>💙BOARD</h1>
+        </a>
+        <h2 class="text-center mt-05">BOARD에 오신 것을 환영합니다.</h2>
+        <p class="text-center mt-05">회원가입에 필요한 기본 정보를 입력해주세요.</p>
         <form id="signup-form">
             <div>
                 <div class="row mt-05">
@@ -44,7 +47,7 @@
                 <div class="row mt-05">
                     <label for="cert-num">인증번호 확인</label>
                     <div class="fr">
-                        <input type="text" class="check" id="cert-num" placeholder="인증번호 입력" name="cert-num">
+                        <input type="text" class="check" id="cert-num" placeholder="인증번호 입력" disabled="disabled" name="cert-num" maxlength="6">
                         <a href="#" id="certChk" class="btn-grey btn-square mt-2">확인</a>
                         <a href="#" id="emailChk2" class="btn-grey btn-square mt-2">재전송</a>
                     </div>

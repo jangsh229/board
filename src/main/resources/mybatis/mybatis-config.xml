@@ -5,5 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.board.domain.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="com.board.domain.MemberDTO" alias="memberDTO"/>
 	</typeAliases>
 </configuration>

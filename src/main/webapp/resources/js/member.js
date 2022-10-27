@@ -1,7 +1,7 @@
 $(function(){
     
     //입력창 변경사항 생길 시 회원가입 유효성 검사
-    $(".check").on('change', function(){
+    $(".check").on('focusout', function(){
         switch($(this).attr("name")){
             case "mem_id":
                 checkId();
@@ -30,14 +30,75 @@ $(function(){
         checkPwd();
         checkPwdChk();
         checkEmail();
-        checkCertNum();
+        checkCertNum(certCode);
         checkName();
 
-        if($('.vali').length == 0){
-            alert('가입 성공!');
-        } else {
+        if($('.vali').length != 0){
             alert('필수항목을 작성해주세요.');
+        } else {
+            var id = $('#member-id').val();
+            var pwd = $('#member-pwd').val();
+            var email = $('#member-email').val();
+            var name = $('#member-name').val();
+            $.ajax({
+                type : "POST",
+                url : "/member/regist",
+                data : {
+                    mem_id: id, 
+                    mem_pwd: pwd, 
+                    mem_email: email, 
+                    mem_name: name},
+                success: function(result){
+                    if(result){
+                        alert('가입 완료! 환영합니다! 😊');
+                        location.href="/";
+                    } else {
+                        alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+                    }
+                },
+                error: function(result){
+                    console.log(result);
+                }
+            });
         }
+    });
+
+    // 인증번호 전송
+    var certCode = '';
+    $('#emaiChk').click(function(){
+        checkEmail();
+        var msg = $(this).parent().siblings("p").html();
+        if(msg != ''){
+            alert('인증을 위해 정확한 이메일 주소를 작성해주세요.');
+        } else {
+            $.ajax({
+                type : "GET",
+                url : "/member/certifyEmail",
+                async: false,
+                data : {email : $('#member-email').val()},
+                success: function(data){
+                    certCode = data;
+                    $('#cert-num').attr("disabled", false);
+                    alert('인증번호가 발송되었습니다.');
+                },
+                error: function(result){
+                    console.log(result);
+                }
+            });
+        }
+    });
+
+    //인증번호 확인
+    $('#certChk').click(function(){
+        checkCertNum(certCode);
+        if($('#cert-num').parent('div').siblings('p').html() == ''){
+            alert('인증이 완료되었습니다.');
+        }
+    });
+
+    //인증번호 재전송
+    $('#emailChk2').click(function(){
+        $('#emaiChk').trigger('click');
     });
 })
 
@@ -48,6 +109,7 @@ function onOffVali(checkText, target){
         realTarget.addClass("vali");
         realTarget.slideDown();
     } else {
+        realTarget.html("");
         realTarget.slideUp(function(){
             realTarget.removeClass("vali");
         });
@@ -66,7 +128,20 @@ function checkId(){
     } else if(reg_space.test(idVal)){
         checkText = "공백을 사용할 수 없는 항목입니다.";
     } else {
-        //중복검사
+        $.ajax({
+			type : "GET",
+			url : "/member/checkAvailability",
+            async: false,
+			data : {field : "mem_id", value : idVal},
+			success: function(result){
+                if(!result){
+                    checkText = "이미 사용중인 아이디 입니다.";
+				}
+			},
+			error: function(result){
+				console.log(result);
+			}
+		});
     }
     onOffVali(checkText, $('#member-id'));
 }
@@ -109,19 +184,35 @@ function checkEmail(){
     } else if(reg_space.test(emailVal)){
         checkText = "공백을 사용할 수 없는 항목입니다.";
     } else {
-        //중복검사
+        $.ajax({
+			type : "GET",
+			url : "/member/checkAvailability",
+            async: false,
+			data : {field : "mem_email", value : emailVal},
+			success: function(result){
+                if(!result){
+                    checkText = "이미 사용중인 이메일 입니다.";
+				}
+			},
+			error: function(result){
+				console.log(result);
+			}
+		});
     }
     onOffVali(checkText, $('#member-email'));
 }
 
-function checkCertNum(){
+function checkCertNum(certCode){
     var checkText = '';
-    var CertNumVal = $('#cert-num').val();
-    if(CertNumVal.length == 0){
-        checkText = "인증번호를 입력해주세요.";
+    var certNumVal = $('#cert-num').val();
+    if(certNumVal.length == 0){
+        checkText = "이메일 인증 후 인증번호를 입력해주세요.";
+    } else if(certNumVal != certCode){
+        checkText = "인증번호가 일치하자 않습니다.";
     } else {
-        //이메일 인증번호 확인
+        $('#cert-num').attr("disabled", true);
     }
+    
     onOffVali(checkText, $('#cert-num'));
 }
 
@@ -137,7 +228,20 @@ function checkName(){
     } else if(reg_space.test(nameVal)){
         checkText = "공백을 사용할 수 없는 항목입니다.";
     } else {
-        //중복검사
+        $.ajax({
+			type : "GET",
+			url : "/member/checkAvailability",
+            async: false,
+			data : {field : "mem_name", value : nameVal},
+			success: function(result){
+                if(!result){
+                    checkText = "이미 사용중인 닉네임 입니다.";
+				}
+			},
+			error: function(result){
+				console.log(result);
+			}
+		});
     }
     onOffVali(checkText, $('#member-name'));
 }

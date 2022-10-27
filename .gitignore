@@ -102,3 +102,4 @@ replay_pid*
 
 # security
 db.properties
+email.properties
