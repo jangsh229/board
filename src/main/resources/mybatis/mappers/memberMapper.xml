@@ -11,4 +11,8 @@
 		insert into member
 		values(seq_mem.nextval, #{mem_id}, #{mem_pwd}, #{mem_email}, #{mem_name}, 'normal', sysdate, sysdate)
 	</insert>
+	
+	<select id="selectById" resultType="memberDTO">
+		select * from member where mem_id = #{id}
+	</select>
 </mapper>

@@ -1,6 +1,6 @@
 $(function(){
     
-    //입력창 변경사항 생길 시 회원가입 유효성 검사
+    // 회원가입 - 입력창 변경사항 생길 시 회원가입 유효성 검사
     $(".check").on('focusout', function(){
         switch($(this).attr("name")){
             case "mem_id":
@@ -63,7 +63,7 @@ $(function(){
         }
     });
 
-    // 인증번호 전송
+    // 회원가입 - 이메일 인증번호 전송
     var certCode = '';
     $('#emaiChk').click(function(){
         checkEmail();
@@ -88,7 +88,7 @@ $(function(){
         }
     });
 
-    //인증번호 확인
+    // 회원가입 - 이메일 인증번호 확인
     $('#certChk').click(function(){
         checkCertNum(certCode);
         if($('#cert-num').parent('div').siblings('p').html() == ''){
@@ -96,13 +96,19 @@ $(function(){
         }
     });
 
-    //인증번호 재전송
+    // 회원가입 - 이메일 인증번호 재전송
     $('#emailChk2').click(function(){
         $('#emaiChk').trigger('click');
     });
+
+    // 로그인 - 로그인 버튼 클릭
+    $('#mem-login').click(function(){
+        $('#login-form').attr("action", "login");
+        $('#login-form').submit();
+    });
 })
 
-//안내문구 표시, 숨김
+// 회원가입 - 항목별 안내문구 표시, 숨김
 function onOffVali(checkText, target){
     var realTarget = target.parent("div").siblings("p");
     if(checkText != ""){
