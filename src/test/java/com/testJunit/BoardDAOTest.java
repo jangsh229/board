@@ -38,6 +38,8 @@ public class BoardDAOTest {
 		
 		//then
 		assertNotNull(list);
-		list.forEach(board -> log.info(board));
+		for(BoardDTO board : list) {
+			log.info(board);
+		}
 	}
 }

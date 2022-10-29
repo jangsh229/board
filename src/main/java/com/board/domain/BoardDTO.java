@@ -9,8 +9,8 @@ public class BoardDTO {
 	int seq;
 	String subject;
 	String content;
-	String name;
 	Date reg_date;
 	int readCount;
-	
+	int mem_seq;
+	String name;
 }

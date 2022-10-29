@@ -1,9 +1,13 @@
 package com.board.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.domain.MemberDTO;
@@ -47,7 +51,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(@RequestParam(value = "error", required = false)String error,
+						@RequestParam(value = "exception", required = false)String exception,
+						HttpServletRequest request,
+						Model model) {
+		model.addAttribute("error", error);
+		model.addAttribute("exception", exception);
 		return "noTiles/member/login";
 	}
 }

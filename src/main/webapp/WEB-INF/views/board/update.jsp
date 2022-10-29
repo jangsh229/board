@@ -16,10 +16,6 @@
 					<span>제목</span>
 					<input type="text" id="subject" name="subject" value="${detail.subject}">
 				</div>
-				<div class="row">
-					<span>작성자</span>
-					<input type="text" id="name" name="name" value="${detail.name}">
-				</div>
 			</div>
 			<div id="editor" name="content"></div>
 			<input type="hidden" id="seq" name="seq" value="${detail.seq}">

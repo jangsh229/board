@@ -10,6 +10,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.board.dao.MemberDAO;
@@ -58,6 +59,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public Integer regist(MemberDTO dto) {
+		BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+		dto.setMem_pwd(pe.encode(dto.getMem_pwd()));
 		return dao.regist(dto);
+	}
+	
+	@Override
+	public MemberDTO selectById(String id) {
+		return dao.selectById(id);
 	}
 }

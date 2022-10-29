@@ -13,7 +13,6 @@
 		<form id="frm">
 			<div class="detail-header bd-btm">
 				<div class="flex-wrap">
-					<input type="hidden" value="" name="seq" id="seq">	 	
 					<div class="fl"><h2>${detail.subject}</h2></div>
 					<div class="fr"><span class="text-mid">조회수 ${detail.readCount}</span></div>
 				</div>
@@ -23,15 +22,18 @@
 				</div>
 			</div>
 			<div class="content bd-btm">${detail.content}</div>
+			<input type="hidden" value="${detail.seq}" name="seq" id="seq">
 		</form>
 		<div class="flex-mn">
 			<div class="fl">
 				<a href="#" class="btn-grey btn-square" onclick="fn_goList(${cri.pg});">목록</a>			
 			</div>
-			<div class="fr">
-				<a href="#" class="btn-grey btn-square" onclick="fn_goUpdate(${detail.seq});">수정</a>
-				<a href="#" class="btn-grey btn-square" onclick="fn_delete(${detail.seq});">삭제</a>	
-			</div>
+			<c:if test="${isWriter}">
+				<div class="fr">
+					<a href="#" class="btn-grey btn-square" onclick="fn_goUpdate();">수정</a>
+					<a href="#" class="btn-grey btn-square" onclick="fn_delete();">삭제</a>	
+				</div>
+			</c:if>
 		</div>
 	</div>
 </div>
