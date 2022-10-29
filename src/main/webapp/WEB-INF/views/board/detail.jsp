@@ -37,6 +37,7 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/board/list.jsp" />
 <form id="action-frm">
 	<input type="hidden" value="${cri.pg}" name="pg">
 	<input type="hidden" value="${cri.type}" name="type">

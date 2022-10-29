@@ -60,6 +60,8 @@ public class BoardController {
 		model.addAttribute("detail", dto);
 		model.addAttribute("isWriter", boardService.isWriter(dto.getMem_seq(), loginUser.getMem_seq()));
 		model.addAttribute("cri", cri);
+		model.addAttribute("list", boardService.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, boardService.getTotal(cri)));
 		return "board/detail";
 	}
 
