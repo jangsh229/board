@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +18,14 @@
 	            </div>
             </nav>
             <div class="nav__right">
-                <a href="/member/login" class="btn-white">로그인</a>
-                <a href="/member/signup" class="btn-blue">회원가입</a>
+                <sec:authorize access="isAnonymous()">
+                    <a href="/member/login" class="btn-white">로그인</a>
+                    <a href="/member/signup" class="btn-blue">회원가입</a>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <a href="#" class="btn-blue">마이페이지</a>
+                    <a href="/logout" class="btn-white">로그아웃</a>
+                </sec:authorize>
             </div>
         </div>
     </header>

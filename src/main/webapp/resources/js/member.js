@@ -103,8 +103,10 @@ $(function(){
 
     // 로그인 - 로그인 버튼 클릭
     $('#mem-login').click(function(){
-        $('#login-form').attr("action", "login");
-        $('#login-form').submit();
+        var f = $('#login-form');
+        f.attr("action", "/authenticate");
+        f.attr("method", "post")
+        f.submit();
     });
 })
 

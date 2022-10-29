@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,17 +18,22 @@
                 <div class="row mt-05">
                     <label for="member-id">아이디</label>
                     <div>
-                        <input type="text" id="member-id" name="mem_id">
+                        <input type="text" id="member-id" name="mem_id" placeholder="아이디를 입력해주세요.">
                     </div>
                     <p></p>
                 </div>
                 <div class="row mt-05">
                     <label for="member-pwd">비밀번호</label>
                     <div>
-                        <input type="password" id="member-pwd" name="mem_pwd">
+                        <input type="password" id="member-pwd" name="mem_pwd" placeholder="비밀번호를 입력해주세요.">
                     </div>
                     <p></p>
                 </div>
+                <c:if test="${error}">
+                    <div class="row mt-10">
+                        <p class="valiAlert">${exception}</p>
+                    </div>
+                </c:if>
             </div>
         </form>
         <div class="regist-btm">
