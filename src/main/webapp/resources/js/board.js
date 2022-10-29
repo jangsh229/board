@@ -22,7 +22,8 @@ function fn_goWrite(){
 	location.href = "/board/goWrite";
 }
 
-function fn_goUpdate(seq){
+function fn_goUpdate(){
+	var seq = $('#seq').val();
 	var f = $('#action-frm');
 	f.find('input[name="seq"]').val(seq);
 	fn_clearBlankParam(f);
@@ -95,7 +96,7 @@ function fn_delete(seq) {
 		$.ajax({
 			type : "POST",
 			url : "/board/delete",
-			data : {seq : seq},
+			data : {seq : $('#seq').val()},
 			success: function(data){
 				if(data == "Y"){
 					alert("삭제되었습니다.")

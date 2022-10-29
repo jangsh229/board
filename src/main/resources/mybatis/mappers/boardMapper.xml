@@ -6,24 +6,24 @@
 	
 	<select id="getList" resultType="com.board.domain.BoardDTO"> <!-- 비교연산자 사용을 위해 <!CDATA[[]]> 사용-->
 		<![CDATA[
-		select * 
+		select b.rn, b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, m.mem_name name
 		from(
 		    select /*+ INDEX_DESC(board board_pk)*/ 
-		        rownum rn, seq, subject, content, name, reg_date, readcount
+		        rownum rn, seq, subject, content, reg_date, readcount, mem_seq
 		    from board
 		    where
 		]]>
 		<include refid="criteria"></include>
 		<![CDATA[		 
-		      rownum <= #{pg} * #{amount}
-		)
-		where rn > (#{pg}-1) * #{amount}
+		      	rownum <= #{pg} * #{amount}
+		) b, member m
+		where (b.mem_seq = m.mem_seq) and rn > (#{pg}-1) * #{amount}
 		]]>
 	</select>
 	
 	<insert id="write" parameterType="boardDTO"> <!-- config.xml에서 alias 설정 -->
-		insert into board
-		values(seq_board.nextval, #{subject}, #{content}, #{name}, sysdate, 0)
+		insert into board(seq, subject, content, reg_date, readcount, mem_seq)
+		values(seq_board.nextval, #{subject}, #{content}, sysdate, 0, #{mem_seq})
 	</insert>
 	
 	<update id="updateReadCount" parameterType="Integer">
@@ -34,16 +34,18 @@
 	
 	
 	<select id="detail" parameterType="java.lang.Integer" resultType="boardDTO">
-		select * 
-		from board
-		where seq = #{seq}
+		select 
+			b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, m.mem_name name 
+		from 
+			board b, member m
+		where 
+			b.mem_seq=m.mem_seq and b.seq = #{seq}
 	</select>
 	
 	<update id="update" parameterType="boardDTO">
 		update board
 		set
 			subject = #{subject},
-			name = #{name},
 			content = #{content}
 		where
 			seq = #{seq}

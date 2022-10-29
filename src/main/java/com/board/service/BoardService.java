@@ -15,4 +15,5 @@ public interface BoardService {
 	public int update(BoardDTO dto);
 	public int delete(int seq);
 	public int getTotal(Criteria cri);
+	public boolean isWriter(int boardMemSeq, int loginMemSeq);
 }

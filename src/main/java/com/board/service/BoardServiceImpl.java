@@ -74,4 +74,13 @@ public class BoardServiceImpl implements BoardService {
 	public int getTotal(Criteria cri) {
 		return dao.getTotal(cri);
 	}
+	
+	@Override
+	public boolean isWriter(int boardMemSeq, int loginMemSeq) {
+		if(boardMemSeq == loginMemSeq) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

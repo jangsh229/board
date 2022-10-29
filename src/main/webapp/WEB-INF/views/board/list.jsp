@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,9 @@
 		</table>
 	</div>
 	<div class="flex-mn">
-		<a href="#" class="fr btn-blue btn-square" onclick="fn_goWrite()">작성하기</a>
+		<sec:authorize access="isAuthenticated()">
+			<a href="#" class="fr btn-blue btn-square" onclick="fn_goWrite()">작성하기</a>
+		</sec:authorize>
 	</div>
 	<div class="list-search">
 		<form class="list-search-frm" id="list-search-frm" >

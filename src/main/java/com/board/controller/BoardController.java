@@ -1,5 +1,7 @@
 package com.board.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,31 +14,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.board.domain.BoardDTO;
 import com.board.domain.Criteria;
+import com.board.domain.MemberDTO;
 import com.board.domain.PageDTO;
 import com.board.service.BoardService;
+import com.board.service.MemberService;
 
 @Controller
 @RequestMapping(value = "/board/*")
 public class BoardController {
 	@Autowired
-	private BoardService service;
+	private BoardService boardService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotal(cri)));
+		model.addAttribute("list", boardService.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, boardService.getTotal(cri)));
 		return "board/list";
 	}
 
 	@RequestMapping(value = "/goWrite", method = RequestMethod.GET)
-	public String regiView() {
+	public String regiView(Principal login, Model model) {
+		model.addAttribute("member", memberService.selectById(login.getName()));
 		return "board/write";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String regi(BoardDTO dto) {
-		if (service.write(dto) == 1) {
+	public String regi(BoardDTO dto, Principal login) {
+		MemberDTO writer = memberService.selectById(login.getName());
+		dto.setMem_seq(writer.getMem_seq());
+		if (boardService.write(dto) == 1) {
 			return "Y";
 		} else {
 			return "N";
@@ -44,10 +53,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String view(String seq, Criteria cri, 
+	public String view(String seq, Criteria cri, Principal login,
 						HttpServletRequest request, HttpServletResponse response, Model model) {
-		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
+		MemberDTO loginUser = memberService.selectById(login.getName());
+		BoardDTO dto = boardService.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
+		model.addAttribute("isWriter", boardService.isWriter(dto.getMem_seq(), loginUser.getMem_seq()));
 		model.addAttribute("cri", cri);
 		return "board/detail";
 	}
@@ -55,7 +66,7 @@ public class BoardController {
 	@RequestMapping(value = "/goUpdate", method = RequestMethod.POST)
 	public String updateView(String seq, Criteria cri, 
 								HttpServletRequest request, HttpServletResponse response, Model model) {
-		BoardDTO dto = service.detail(Integer.parseInt(seq), request, response);
+		BoardDTO dto = boardService.detail(Integer.parseInt(seq), request, response);
 		model.addAttribute("detail", dto);
 		model.addAttribute("cri", cri);
 		return "board/update";
@@ -65,7 +76,7 @@ public class BoardController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(BoardDTO dto, Criteria cri, Model model) {
 		model.addAttribute("cri", cri);
-		if (service.update(dto) == 1) {
+		if (boardService.update(dto) == 1) {
 			return "Y";
 		} else {
 			return "N";
@@ -76,7 +87,7 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		int seq = Integer.parseInt(request.getParameter("seq"));
-		if (service.delete(seq) == 1) {
+		if (boardService.delete(seq) == 1) {
 			return "Y";
 		} else {
 			return "N";
