@@ -32,7 +32,10 @@
 				<c:forEach items="${list}" var="list">
 					<tr>
 						<td>${list.seq}</td>
-						<td class="subject"><a href="#" onclick="fn_goDetail(${list.seq})">${list.subject}</a></td>
+						<td class="subject">
+							<a href="#" onclick="fn_goDetail(${list.seq})">${list.subject}</a>
+							<a href="#" class="ml-05 font-blue font-bold text-sm" onclick="fn_goDetail(${list.seq})">${list.replyCount}</a>
+						</td>
 						<td>${list.name}</td>
 		 				<td><fmt:formatDate value="${list.reg_date}" pattern="MM/dd"/></td>
 						<td>${list.readCount}</td>

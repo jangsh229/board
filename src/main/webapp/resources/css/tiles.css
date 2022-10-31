@@ -117,12 +117,72 @@ p {
     white-space: nowrap;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.font-grey {
+    color: #00000096;
+}
+
+.font-blue {
+    color: rgb(37 146 225);
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.mt-2 {
+    margin-top: 2px;
+}
+
+.mt-05 {
+    margin-top: 0.5rem;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.ml-05 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mb-05 {
+    margin-bottom: 5px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.border-btm {
+    border-bottom: 0.5px solid rgb(221, 221, 221);
+}
+
+.border-btm2 {
+    border-bottom: 2px solid rgb(221, 221, 221);
+}
+
 .btn-square {
     font-size: 13px;
     font-weight: 600;
     line-height: 25px;
     white-space: nowrap;
-    padding: 6px 13px;
+    padding: 3px 10px;
     margin: 0 2px;
     border-radius: 6px;
 }
@@ -148,6 +208,16 @@ p {
 
 .btn-blue:hover {
     background-color: rgba(19, 128, 206, 0.582);
+}
+
+.btn-blue-disabled {
+    color: white;
+    background-color: rgba(19, 128, 206, 0.582);
+    cursor: default;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .footer {
