@@ -49,4 +49,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public int getTotal(Criteria cri) {
 		return sqlSession.selectOne(namespace+".getTotal", cri);
 	}
+	
+	@Override
+	public int updateReplyCount(int board_seq) {
+		return sqlSession.update(namespace+".updateReplyCount", board_seq);
+	}
 }

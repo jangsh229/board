@@ -6,10 +6,11 @@
 	
 	<select id="getList" resultType="com.board.domain.BoardDTO"> <!-- 비교연산자 사용을 위해 <!CDATA[[]]> 사용-->
 		<![CDATA[
-		select b.rn, b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, m.mem_name name
+		select 
+			b.rn, b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, b.replycount, m.mem_name name
 		from(
 		    select /*+ INDEX_DESC(board board_pk)*/ 
-		        rownum rn, seq, subject, content, reg_date, readcount, mem_seq
+		        rownum rn, seq, subject, content, reg_date, readcount, mem_seq, replycount
 		    from board
 		    where
 		]]>
@@ -35,7 +36,7 @@
 	
 	<select id="detail" parameterType="java.lang.Integer" resultType="boardDTO">
 		select 
-			b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, m.mem_name name 
+			b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, b.replycount, m.mem_name name 
 		from 
 			board b, member m
 		where 
@@ -65,6 +66,12 @@
 			seq > 0		
 		]]>
 	</select>
+	
+	<update id="updateReplyCount" parameterType="Integer">
+		update board
+		set replycount = replyCount + 1
+		where seq = #{board_seq}
+	</update>
 	
 	<!-- sql코드는 <include>로 사용할 수 있다 -->
 	<sql id="criteria">

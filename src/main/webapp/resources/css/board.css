@@ -186,7 +186,11 @@ h3 {
 }
 
 .detail li {
-    padding: 10px 5px;
+    padding: 15px 5px;
+}
+
+.detail .reply-content {
+    font-size: 14px;
 }
 
 .detail .reply {

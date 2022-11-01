@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             		"/resources/**"
             		).permitAll()
             .antMatchers( //회원 허용 url
-            		"/board/detail"
+            		"/board/goWrite"
             		).hasRole("USER")
             .antMatchers( //전체 허용 url (권한이 필요한 url보다 밑에 작성되어야 함)
             		"/**"

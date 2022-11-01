@@ -11,6 +11,7 @@ public class BoardDTO {
 	String content;
 	Date reg_date;
 	int readCount;
+	int replyCount;
 	int mem_seq;
 	String name;
 }

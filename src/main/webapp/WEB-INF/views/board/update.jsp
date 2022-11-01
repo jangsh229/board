@@ -35,7 +35,6 @@
 <input type="hidden" id="content" name="current-content" value="${detail.content}">
 </body>
 <script>
-	//글작성 에디터(CKEditor) 생성
 	ClassicEditor
 		.create( document.querySelector( '#editor' ) )
 		.then( newEditor => {
