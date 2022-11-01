@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.board.dao.BoardDAO;
 import com.board.domain.BoardDTO;
 import com.board.domain.Criteria;
+import com.board.domain.MemberDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -76,11 +77,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public boolean isWriter(int boardMemSeq, int loginMemSeq) {
-		if(boardMemSeq == loginMemSeq) {
-			return true;
-		} else {
+	public boolean isWriter(BoardDTO boardDTO, MemberDTO loginUser) {
+		if(loginUser == null) {
 			return false;
+		} else {
+			if(boardDTO.getMem_seq() == loginUser.getMem_seq()) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 }

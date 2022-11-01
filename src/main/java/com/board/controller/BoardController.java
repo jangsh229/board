@@ -18,6 +18,7 @@ import com.board.domain.MemberDTO;
 import com.board.domain.PageDTO;
 import com.board.service.BoardService;
 import com.board.service.MemberService;
+import com.board.service.ReplyService;
 
 @Controller
 @RequestMapping(value = "/board/*")
@@ -26,6 +27,8 @@ public class BoardController {
 	private BoardService boardService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
@@ -55,10 +58,15 @@ public class BoardController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String view(String seq, Criteria cri, Principal login,
 						HttpServletRequest request, HttpServletResponse response, Model model) {
-		MemberDTO loginUser = memberService.selectById(login.getName());
-		BoardDTO dto = boardService.detail(Integer.parseInt(seq), request, response);
-		model.addAttribute("detail", dto);
-		model.addAttribute("isWriter", boardService.isWriter(dto.getMem_seq(), loginUser.getMem_seq()));
+		BoardDTO boardDTO = boardService.detail(Integer.parseInt(seq), request, response);
+		MemberDTO loginUser = null;
+		if(login != null) {
+			loginUser = memberService.selectById(login.getName());
+		}
+		model.addAttribute("detail", boardDTO);
+		model.addAttribute("reply", replyService.list(Integer.parseInt(seq)));
+		model.addAttribute("login", loginUser);
+		model.addAttribute("isWriter", boardService.isWriter(boardDTO, loginUser));
 		model.addAttribute("cri", cri);
 		model.addAttribute("list", boardService.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, boardService.getTotal(cri)));

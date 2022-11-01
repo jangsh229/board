@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.board.domain.BoardDTO;
 import com.board.domain.Criteria;
+import com.board.domain.MemberDTO;
 
 public interface BoardService {
 	public List<BoardDTO> getList(Criteria cri);
@@ -15,5 +16,5 @@ public interface BoardService {
 	public int update(BoardDTO dto);
 	public int delete(int seq);
 	public int getTotal(Criteria cri);
-	public boolean isWriter(int boardMemSeq, int loginMemSeq);
+	public boolean isWriter(BoardDTO boardDTO, MemberDTO loginUser);
 }

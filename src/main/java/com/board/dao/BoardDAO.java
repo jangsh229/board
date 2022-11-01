@@ -13,4 +13,5 @@ public interface BoardDAO {
 	public int update(BoardDTO dto);
 	public int delete(int seq);
 	public int getTotal(Criteria cri);
+	public int updateReplyCount(int board_seq);
 }

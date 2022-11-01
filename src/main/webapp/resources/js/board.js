@@ -122,13 +122,11 @@ function fn_search(){
 	}
 }
 
-$(function(){
-	// 엔터키로 검색
-	$('#search-keyword').keydown(function(key) { 
-		if (key.keyCode == 13) {
-			fn_search();
-		}
-	});
+// 엔터키로 검색
+$(document).on('keydown', '#search-keyword', function(e){
+	if (e.keyCode == 13) {
+		fn_search();
+	}
 });
 
 // url에서 필요없는 파라미터를 삭제해주는 메소드
