@@ -18,6 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private CustomUserDetailsService customUserDetailsService;
 	@Autowired
 	private CustomAuthFailureHandler customAuthFailureHandler; 
+	@Autowired
+	private CustomAuthSuccessHandler customAuthSuccessHandler;
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {
@@ -51,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	            .passwordParameter("mem_pwd")
 	            .loginPage("/member/login")
 	            .loginProcessingUrl("/authenticate")
+	            .successHandler(customAuthSuccessHandler)
 	            .failureHandler(customAuthFailureHandler)
 	        .and()
 	            .logout()

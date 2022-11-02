@@ -57,6 +57,11 @@ public class MemberController {
 						Model model) {
 		model.addAttribute("error", error);
 		model.addAttribute("exception", exception);
+		// 로그인 성공 시 되돌아갈 이전 페이지 정보 저장
+		String uri = request.getHeader("Referer");
+		if(uri != null && !uri.contains("/login")) {
+			request.getSession().setAttribute("prevPage", uri);
+		}
 		return "noTiles/member/login";
 	}
 }
