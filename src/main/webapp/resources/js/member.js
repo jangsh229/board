@@ -1,6 +1,6 @@
 $(function(){
     
-    // 회원가입 - 입력창 변경사항 생길 시 회원가입 유효성 검사
+    // 회원가입 페이지에서 입력창 변경사항 생길 때마다 유효성 검사
     $(".check").on('focusout', function(){
         switch($(this).attr("name")){
             case "mem_id":
@@ -24,7 +24,7 @@ $(function(){
         }
     });
 
-    // 회원가입 버튼 클릭 시 유효성 검사
+    // 회원가입 버튼 클릭 시 유효성 검사 후 등록
     $('#mem-regist').click(function(){
         checkId();
         checkPwd();
@@ -125,6 +125,7 @@ function onOffVali(checkText, target){
     }
 }
 
+// 회원가입 - 유효성검사(아이디)
 function checkId(){
     var reg_id = /^[a-z0-9_-]{6,15}$/;
     var reg_space = /\s/g;
@@ -155,6 +156,7 @@ function checkId(){
     onOffVali(checkText, $('#member-id'));
 }
 
+// 회원가입 - 유효성검사(비밀번호)
 function checkPwd(){
     var reg_pwd = /(?=.*\d)(?=.*[a-zA-ZS]).{8,}/;
     var reg_space = /\s/g;
@@ -170,6 +172,7 @@ function checkPwd(){
     onOffVali(checkText, $('#member-pwd'));
 }
 
+// 회원가입 - 비밀번호 재확인
 function checkPwdChk(){
     var checkText = '';
     var pwdChkVal = $('#member-pwd-chk').val();
@@ -181,6 +184,7 @@ function checkPwdChk(){
     onOffVali(checkText, $('#member-pwd-chk'));
 }
 
+// 회원가입 - 유효성검사(이메일)
 function checkEmail(){
     var reg_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
     var reg_space = /\s/g;
@@ -211,6 +215,7 @@ function checkEmail(){
     onOffVali(checkText, $('#member-email'));
 }
 
+// 회원가입 - 이메일 인증번호 확인
 function checkCertNum(certCode){
     var checkText = '';
     var certNumVal = $('#cert-num').val();
@@ -225,6 +230,7 @@ function checkCertNum(certCode){
     onOffVali(checkText, $('#cert-num'));
 }
 
+// 회원가입 - 유효성검사(닉네임)
 function checkName(){
     var reg_name = /^[가-힣a-zA-Z0-9]{2,20}$/;
     var reg_space = /\s/g;

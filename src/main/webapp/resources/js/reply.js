@@ -59,7 +59,6 @@ $(document).on('click', '.deleteRep', function(){
             data : {rep_seq : rep_seq},
             success: function(data){
                 if(data == "Y"){
-                    alert("삭제되었습니다.")
                     fn_refreshReply();
                 }
             },
@@ -158,15 +157,17 @@ $(document).on('click', '.updateReply', function(){
 
 // 댓글 새로고침
 function fn_refreshReply(){
+    // 요청 url에 들어갈 파라미터 설정, 정리
 	var seq = $('#seq').val();
 	var formData = $('#action-frm');
 	formData.find('input[name="seq"]').val(seq);
-
 	fn_clearBlankParam(formData);
-	
 	var param = formData.serialize();
+
+    // jQuery.load()로 댓글 목록 구역만 load
 	$('#refresh-area').load("/board/detail?"+param+" #refresh-area");
 	
+    // load 후 댓글 입력란 비우고 커서 포커스 아웃 시키기
 	editor.setData('');
 	$('.ck-content').blur();
 }
