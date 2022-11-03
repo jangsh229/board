@@ -23,7 +23,7 @@
                     <a href="/member/signup" class="btn-blue">회원가입</a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <a href="#" class="btn-blue">마이페이지</a>
+                    <a href="#" class="btn-blue" style="display: none;">마이페이지</a>
                     <a href="/logout" class="btn-white">로그아웃</a>
                 </sec:authorize>
             </div>
