@@ -29,22 +29,24 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		// 로그인 실패 기록 제거
 		clearFailSession(request);
 		
-		// prevPage가 존재할 경우 = 사용자가 직접 로그인 페이지로 이동한 경우 
-		// 해당 uri는 저장해두고 session의 prevPage는 삭제한다.
+		// 사용자가 직접 로그인 페이지로 이동한 경우 
+		// prevPage의 uri는 저장해두고 session의 prevPage는 삭제한다.
 		String prevPage = (String) request.getSession().getAttribute("prevPage");
 		if(prevPage != null) {
 			request.getSession().removeAttribute("prevPage");
 		}
 		
-		// prevPage가 없을 경우 기본 uri (메인 페이지)
-		String uri = "/";
+		// 로그인 성공 시 보내줄 페이지의 uri (default = main)
+		String uri = "/";		
 		
-		// savedRequest가 존재할 경우 = 사용자 권한이 없는 페이지에 접근해 로그인 페이지로 이동된 경우
+		// 사용자 권한이 없는 페이지에 접근해 로그인 페이지로 이동된 경우
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 		if(savedRequest != null) {
+			// savedRequest가 존재할 경우  
 			uri = savedRequest.getRedirectUrl(); // 이전 요청 불러오기
-		} else if (prevPage != null && !prevPage.equals("")) {
-			// savedRequest는 없지만 prevPage가 있을 경우
+		} else if (prevPage != null && !prevPage.equals("") && !prevPage.contains("/signup")) {
+			// savedRequest는 없지만 prevPage가 존재할 경우
+			// 회원가입 페이지에서 로그인 페이지로 넘어왔을 경우, uri = /
 			uri = prevPage;
 		}
 		

@@ -78,7 +78,7 @@ h3 {
 }
 
 .write .row input {
-    width: 60%;
+    width: 85%;
     height: 25px;
     padding: 3px;
     border: 1px solid var(--ck-color-base-border);
@@ -165,7 +165,8 @@ h3 {
 .list-search a {
     margin: 0;
     border-radius: 0px;
-    padding: 2px 13px;
+    padding: 0 13px;
+    line-height: 29px;
 }
 
 .detail {

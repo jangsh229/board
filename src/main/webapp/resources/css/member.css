@@ -18,13 +18,16 @@
     font-size: 14px;
 }
 
+.row > div {
+    margin-top: 3px;
+}
+
 .row div input {
     width: 97%;
     height: 30px;
     padding: 3px 5px;
     border: 1.5px solid rgb(195, 195, 195);
     border-radius: 3px;
-    margin-top: 3px;
     font-size: 14px;
 }
 
