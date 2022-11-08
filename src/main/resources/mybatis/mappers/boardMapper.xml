@@ -4,27 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardSql">
 	
-	<select id="getList" resultType="com.board.domain.BoardDTO"> <!-- 비교연산자 사용을 위해 <!CDATA[[]]> 사용-->
-		<![CDATA[
-		select 
-			b.rn, b.seq, b.subject, b.content, b.reg_date, b.readcount, b.mem_seq, b.replycount, m.mem_name name
-		from(
-		    select /*+ INDEX_DESC(board board_pk)*/ 
-		        rownum rn, seq, subject, content, reg_date, readcount, mem_seq, replycount
-		    from board
-		    where
-		]]>
+	<select id="getList" resultType="com.board.domain.BoardDTO">
+		SELECT
+			B.seq, B.subject, B.content, B.reg_date, B.readcount, B.mem_seq, B.replycount, M.mem_name name
+		FROM board B
+		JOIN member M
+		ON B.mem_seq = M.mem_seq
+		WHERE
 		<include refid="criteria"></include>
-		<![CDATA[		 
-		      	rownum <= #{pg} * #{amount}
-		) b, member m
-		where (b.mem_seq = m.mem_seq) and rn > (#{pg}-1) * #{amount}
-		]]>
+			1=1
+		ORDER BY B.seq desc
+		LIMIT #{amount} OFFSET #{offset}
 	</select>
 	
 	<insert id="write" parameterType="boardDTO"> <!-- config.xml에서 alias 설정 -->
 		insert into board(seq, subject, content, reg_date, readcount, mem_seq)
-		values(seq_board.nextval, #{subject}, #{content}, sysdate, 0, #{mem_seq})
+		values(0, #{subject}, #{content}, now(), 0, #{mem_seq})
 	</insert>
 	
 	<update id="updateReadCount" parameterType="Integer">
@@ -62,9 +57,7 @@
 	<select id="getTotal" resultType="Integer">
 		select count(*) from board where
 		<include refid="criteria"></include>
-		<![CDATA[
-			seq > 0		
-		]]>
+		1=1
 	</select>
 	
 	<update id="updateReplyCount" parameterType="Integer">
@@ -78,13 +71,13 @@
 		<trim prefix="(" suffix=") and ">
 			<choose>
 				<when test="type == 'S'.toString()">
-					subject like '%'||#{keyword}||'%' 						
+					subject like CONCAT('%', #{keyword}, '%')
 				</when>
 				<when test="type == 'C'.toString()">
-					content like '%'||#{keyword}||'%' 						
+					content like CONCAT('%', #{keyword}, '%') 						
 				</when>				
-				<when test="type == 'B'.toString">
-					subject like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' 						
+				<when test="type == 'B'.toString()">
+					subject like CONCAT('%', #{keyword}, '%') or content like CONCAT('%', #{keyword}, '%')
 				</when>
 			</choose>		
 		</trim>

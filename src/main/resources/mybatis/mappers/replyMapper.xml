@@ -4,19 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="replySql">	
 	<select id="list" parameterType="Integer" resultType="replyDTO">
-		select
-		    r.rep_seq, r.rep_content, r.board_seq, r.mem_seq, r.reg_date, r.chg_date, r.deleted,
-		    (select 
-		        mem_name 
-		    from member m
-		    where m.mem_seq = r.mem_seq) mem_name
-		from reply r
-		where board_seq = #{boardSeq}
+		SELECT 
+			R.rep_seq, R.rep_content, R.board_seq, R.mem_seq, R.reg_date, R.chg_date, R.deleted, M.mem_name
+		FROM reply R
+		JOIN member M
+		ON R.mem_seq = M.mem_seq
+		WHERE R.board_seq = #{boardSeq}
+		ORDER BY R.rep_seq
 	</select>
 	
 	<insert id="regist" parameterType="replyDTO">
 		insert into reply(rep_seq, rep_content, board_seq, mem_seq, reg_date, chg_date)
-		values(seq_reply.nextval, #{rep_content}, #{board_seq}, #{mem_seq}, sysdate, sysdate)
+		values(0, #{rep_content}, #{board_seq}, #{mem_seq}, NOW(), NOW())
 	</insert>
 	
 	<select id="selectBySeq" parameterType="Integer" resultType="replyDTO">
@@ -27,7 +26,7 @@
 		update reply
 		set
 			rep_content = #{rep_content},
-			chg_date = sysdate,
+			chg_date = now(),
 			deleted = #{deleted}
 		where rep_seq = #{rep_seq}
 	</update>
