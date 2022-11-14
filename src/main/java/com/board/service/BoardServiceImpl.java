@@ -21,6 +21,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardDTO> getList(Criteria cri) {
+		cri.setOffset((cri.getPg() - 1) * 10);
 		return dao.getList(cri);
 	}
 

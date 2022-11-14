@@ -9,7 +9,7 @@
 	
 	<insert id="regist" parameterType="memberDTO">
 		insert into member(mem_seq, mem_id, mem_pwd, mem_email, mem_name, mem_type, reg_date, chg_date, auth)
-		values(seq_mem.nextval, #{mem_id}, #{mem_pwd}, #{mem_email}, #{mem_name}, 'normal', sysdate, sysdate, 'USER')
+		values(0, #{mem_id}, #{mem_pwd}, #{mem_email}, #{mem_name}, 'normal', now(), now(), 'USER')
 	</insert>
 	
 	<select id="selectById" resultType="memberDTO">

@@ -35,19 +35,21 @@ h3 {
 .fl {
     margin-right: auto;
     display: flex;
+    align-items: center;
 }
 
 .fr, .flex {
     display: flex;
+    align-items: center;
 }
 
 .text-mid {
-    font-size: 15px;
+    font-size: 13px;
     white-space: nowrap;
 }
 
 .text-sm {
-    font-size: 13px;
+    font-size: 11px;
     white-space: nowrap;
 }
 
@@ -105,8 +107,16 @@ h3 {
     width: 100%;
 }
 
+@media (max-width: 533px) {
+    .list th.seq, .list th.name,
+    .list td.seq, .list td.name {
+        display: none;
+    }
+}
+
 .list th {
     font-size: 13px;
+    font-weight: 200;
     white-space: nowrap;
     background-color: rgba(221, 221, 221, 0.205);;
 }
@@ -115,33 +125,59 @@ h3 {
     border-bottom: 0.5px solid rgb(221, 221, 221);
 }
 
-.list tr:hover {
-    background-color: rgba(221, 221, 221, 0.103);
+.list tbody tr:hover {
+    background-color: rgba(221, 221, 221, 0.133);
+}
+
+.list .select {
+    background-color: rgba(221, 221, 221, 0.133);
 }
 
 .list td, th {
     padding: 6px 10px;
     text-align: center;
+    vertical-align: middle;
+    line-height: 21px;
 }
 
-.list td {
-    font-size: 15px;
+.list-row span {
+    font-size: 11px;
+    color: #777;
 }
 
 .list .subject {
     text-align: left;
+    width: 100%;
+}
+
+.list .subject span {
+    font-size: 13px;
+    word-break: break-all;
+    color: #222;
 }
 
 .list .subject a:hover {
     text-decoration: grey solid 0.5px underline;
 }
 
+.list .subject .replyCnt {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(37 146 225);
+}
+
+.list .name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .list-search {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .list-search-frm {
@@ -174,8 +210,8 @@ h3 {
 }
 
 .detail .detail-header h2 {
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-size: 20px;
+    padding: 0 5px 5px 5px;
 }
 
 .detail .header-btm {
@@ -191,7 +227,7 @@ h3 {
 }
 
 .detail .reply-content {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .detail .reply {
@@ -237,8 +273,8 @@ h3 {
 .page-btn a {
     min-width: 25px;
     min-height: 25px;
-    line-height: 22px;
-    font-size: 14px;
+    line-height: 23px;
+    font-size: 13px;
     display: inline-block;
     text-align: center;
     margin: 0 2px;

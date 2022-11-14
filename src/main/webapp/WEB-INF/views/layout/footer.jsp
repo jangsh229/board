@@ -10,7 +10,6 @@
             <div class="footer__left">
                 <a href="#" class="header__logo">
                     <h1>BOARD</h1>
-                    <p>Spring Project</p>
                 </a>
             </div>
             <div class="footer__right">

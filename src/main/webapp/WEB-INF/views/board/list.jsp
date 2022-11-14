@@ -12,39 +12,48 @@
 <div class="in-content">
 	<div class="list">	
 		<table>
-			<colgroup>
-				<col style="width:5%;">
-				<col style="width:78%;">
-				<col style="width:10%;">
-				<col style="width:5%;">
-				<col style="width:5%;">
-			</colgroup>	
 			<thead>
 				<tr>
-					<th>번호</th>
+					<th class="seq">번호</th>
 					<th class="subject">제목</th>
-					<th>작성자</th>
+					<th class="name">작성자</th>
 					<th>날짜</th>
-					<th>조회수</th>
+					<th class="readCnt">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="list">
-					<tr>
-						<td>${list.seq}</td>
-						<td class="subject">
-							<a href="#" onclick="fn_goDetail(${list.seq})">${list.subject}</a>
-							<a href="#" class="ml-05 font-blue font-bold text-sm" onclick="fn_goDetail(${list.seq})">${list.replyCount}</a>
+					<tr class="list-row ${detail.seq == list.seq ? 'select' : ''}">
+						<td class="seq">
+							<c:if test="${detail.seq eq list.seq}">
+								<span>&gt;</span>
+							</c:if>
+							<c:if test="${detail.seq ne list.seq}">
+								<span>${list.seq}</span>
+							</c:if>
 						</td>
-						<td>${list.name}</td>
-		 				<td><fmt:formatDate value="${list.reg_date}" pattern="MM/dd"/></td>
-						<td>${list.readCount}</td>
+						<td class="subject">
+							<a href="#" onclick="fn_goDetail(${list.seq})"><span>${list.subject}</span></a>
+							<a href="#" class="ml-05 replyCnt" onclick="fn_goDetail(${list.seq})">${list.replyCount}</a>
+						</td>
+						<td class="name">
+							<span>${list.name}</span>
+						</td>
+		 				<td>
+							<span><fmt:formatDate value="${list.reg_date}" pattern="MM/dd"/></span>
+						</td>
+						<td>
+							<span>${list.readCount}</span>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 	<div class="flex-mn">
+		<div class="fl">
+			<a href="#" class="btn-blue btn-square" onclick="fn_list();">목록</a>			
+		</div>
 		<sec:authorize access="isAuthenticated()">
 			<a href="#" class="fr btn-blue btn-square" onclick="fn_goWrite()">작성하기</a>
 		</sec:authorize>
