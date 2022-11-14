@@ -11,7 +11,7 @@ public class Criteria {
 	private String keyword; //검색 키워드
 	
 	public Criteria() {
-		this(1,10);
+		this(1,20);
 	}
 	
 	public Criteria(int pg, int amount) {

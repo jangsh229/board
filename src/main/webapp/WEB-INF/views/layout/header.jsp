@@ -9,7 +9,8 @@
         <div class="header__wrap">
             <nav class="header__nav">
 	            <a href="/" class="header__logo">
-	                <h1>💙 BOARD</h1>
+	                <img src="${path}/resources/images/board_logo.png" alt="BOARD Logo">
+                    <h1>BOARD</h1>
 	            </a>
 	            <div class="nav__menu">
 	                <a href="#">게시판1</a>

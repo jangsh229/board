@@ -16,7 +16,7 @@ html, body {
 }
 
 p {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 #body-wrap {
@@ -31,7 +31,7 @@ p {
 #body {
     max-width: 1080px;
     margin: auto;
-    padding: 20px 20px 80px 20px;
+    padding: 20px 10px 80px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,11 +76,21 @@ p {
     font-size: 14px;
 }
 
+.header__logo {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo img {
+    height: 23px;
+    margin-right: 1px;
+}
+
 .header__logo h1 {
     font: bold 25px 'arial';
     font-weight: 800;
-    letter-spacing: -2px;
-    color: rgb(50, 49, 49);
+    letter-spacing: -1px;
+    color: rgb(50 49 49 / 92%);
     padding-right: 0 5px 0 0;
     white-space: nowrap;
 }
@@ -148,6 +158,10 @@ p {
     margin-top: 20px;
 }
 
+.ml-03 {
+    margin-left: 3px;
+}
+
 .ml-05 {
     margin-left: 5px;
 }
@@ -181,7 +195,7 @@ p {
     font-weight: 600;
     line-height: 32px;
     white-space: nowrap;
-    padding: 3px 10px;
+    padding: 0px 10px;
     margin: 0 2px;
     border-radius: 6px;
 }
@@ -237,5 +251,5 @@ p {
 }
 
 .footer__left {
-    margin-right: 40px;
+    margin-right: 20px;
 }

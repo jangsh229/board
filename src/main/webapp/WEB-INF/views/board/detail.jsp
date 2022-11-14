@@ -21,7 +21,10 @@
 				<div class="flex-wrap mb-10 header-btm border-btm">
 					<div class="fl"><span class="text-mid">작성자 : ${detail.name}</span></div>
 					<div class="fr"><span class="text-sm font-grey"><fmt:formatDate value="${detail.reg_date}" pattern="yy.MM.dd HH:mm"/></span></div>
-					<div class="fr"><span class="text-sm ml-10 font-grey">조회수 ${detail.readCount}</span></div>
+					<div class="fr ml-10">
+						<img src="${path}/resources/images/view.png">
+						<span class="text-sm ml-03 font-grey"> ${detail.readCount}</span>
+					</div>
 				</div>
 			</div>
 			<div class="content border-btm">${detail.content}</div>
@@ -39,13 +42,16 @@
 			</c:if>
 		</div>
 		<div class="mt-20" id="refresh-area">
-			<div class="text-mid header-btm border-btm2">댓글<span class="text-mid ml-10 font-bold">${detail.replyCount}</span>개</div>
+			<div class="fl text-mid header-btm border-btm2">
+				<img src="${path}/resources/images/reply.png">
+				<span class="ml-03 text-mid">댓글 <strong>${detail.replyCount}</strong>개</span>
+			</div>
 			<ul>
 				<c:forEach var="re" items="${reply}"> 
 					<li class="border-btm ${login != null && login.mem_seq == re.mem_seq ? 'reply-mine' : ''}">
 						<div class="mb-05 flex-wrap">
 							<div class="fl">
-								<span class="text-sm font-bold">${re.mem_name}</span>
+								<span class="text-mid font-bold">${re.mem_name}</span>
 								<span class="text-sm ml-10 font-grey"><fmt:formatDate value="${re.reg_date}" pattern="yyyy.MM.dd HH:mm"/></span>
 							</div>
 							<c:if test= "${login != null && login.mem_seq == re.mem_seq && re.deleted == 0}">
@@ -69,7 +75,7 @@
 					<textarea class="reply font-grey" readonly>댓글을 쓰려면 로그인이 필요합니다.</textarea>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-						<div id="editor" name="content"></div>
+					<div id="editor" name="content"></div>
 				</sec:authorize>
 				<button type="button" disabled class="btn-blue${login == null ? '-disabled' : ' pointer' } mt-05 btn-submit" id="replyBtn">댓글 쓰기 (단축키 Ctrl + S)</button>
 			</form>
@@ -84,16 +90,4 @@
 	<input type="hidden" value="" name="seq">
 </form>
 </body>
-<!-- <script>
-	ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		toolbar: [ 'bold', 'italic', 'link', 'numberedList', 'bulletedList', 'undo', 'redo' ]
-	} )
-	.then( newEditor => {
-		editor = newEditor;
-	} )
-	.catch( error => {
-		console.error( error );
-	} );
-</script> -->
 </html>

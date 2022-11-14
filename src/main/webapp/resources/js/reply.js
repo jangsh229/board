@@ -1,6 +1,6 @@
 $(function(){
     // 댓글창 생성
-	fn_createEditor();
+    fn_createEditor();
 
     // 댓글 작성 버튼 활성화
 	if($('.btn-blue-disabled').length == 0){
@@ -176,15 +176,17 @@ function fn_refreshReply(){
 let editor;
 function fn_createEditor(){
 	$(function(){
-		ClassicEditor
-		.create( document.querySelector( '#editor' ), {
-			toolbar: [ 'bold', 'italic', 'link', 'numberedList', 'bulletedList', 'undo', 'redo' ]
-		} )
-		.then( newEditor => {
-			editor = newEditor;
-		} )
-		.catch( error => {
-			console.error( error );
-		} );
+        if($('#editor').length > 0 ){
+            ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                toolbar: [ 'bold', 'italic', 'link', 'numberedList', 'bulletedList', 'undo', 'redo' ]
+            } )
+            .then( newEditor => {
+                editor = newEditor;
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+        }
 	});
 }
