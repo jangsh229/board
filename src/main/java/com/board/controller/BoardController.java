@@ -21,7 +21,6 @@ import com.board.service.MemberService;
 import com.board.service.ReplyService;
 
 @Controller
-@RequestMapping(value = "/board/*")
 public class BoardController {
 	@Autowired
 	private BoardService boardService;

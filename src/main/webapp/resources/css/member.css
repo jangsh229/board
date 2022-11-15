@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .block-center {
-    width: 420px;
+    max-width: 420px;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
@@ -74,4 +74,11 @@
     color: rgb(196, 59, 59);
     padding: 10px 5px;
     border-radius: 3px;
+}
+
+#signup-form .btn-square,
+#login-form .btn-square {
+    height: 30px;
+    padding: 3px 5px;
+    line-height: 29px;
 }

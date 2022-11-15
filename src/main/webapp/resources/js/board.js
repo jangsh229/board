@@ -1,6 +1,6 @@
 // 메인 화면(목록 1페이지)로 돌아가기
 function fn_list(){
-	location.href = "/board/list";
+	location.href = "/list";
 }
 
 // 페이지 이동
@@ -8,7 +8,7 @@ function fn_goList(pg){
 	var f = $('#action-frm');
 	f.find('input[name="pg"]').val(pg);
 	fn_clearBlankParam(f); // action-frm에서 value 값 없는 파라미터 정리
-	f.attr("action", "/board/list");
+	f.attr("action", "/list");
 	f.submit();
 }
 
@@ -17,13 +17,13 @@ function fn_goDetail(seq){
 	var f = $('#action-frm');
 	f.find('input[name="seq"]').val(seq);
 	fn_clearBlankParam(f);
-	f.attr("action", "/board/detail");
+	f.attr("action", "/detail");
 	f.submit();
 }
 
 // 게시글 작성 페이지 이동
 function fn_goWrite(){
-	location.href = "/board/goWrite";
+	location.href = "/goWrite";
 }
 
 // 게시글 수정 페이지 이동
@@ -32,7 +32,7 @@ function fn_goUpdate(){
 	var f = $('#action-frm');
 	f.find('input[name="seq"]').val(seq);
 	fn_clearBlankParam(f);
-	f.attr("action", "/board/goUpdate");
+	f.attr("action", "/goUpdate");
 	f.attr("method", "POST");
 	f.submit();
 }
@@ -50,11 +50,11 @@ function fn_write(){
 	} else {
 		$.ajax({
 			type : "POST",
-			url : "/board/write",
+			url : "/write",
 			data : {subject : subject, name : name, content : content},
 			success: function(data){
 				if(data == "Y"){
-					location.href = "/board/list";		
+					location.href = "/list";		
 				}
 			},
 			error: function(data){
@@ -79,7 +79,7 @@ function fn_boardUpdate(){
 	} else {
 		$.ajax({
 			type : "POST",
-			url : "/board/update",
+			url : "/update",
 			data : {subject : subject, name : name, content : content, seq : seq},
 			success: function(data){
 				if(data == "Y"){
@@ -100,12 +100,12 @@ function fn_delete(seq) {
 	if(con == true) {
 		$.ajax({
 			type : "POST",
-			url : "/board/delete",
+			url : "/delete",
 			data : {seq : $('#seq').val()},
 			success: function(data){
 				if(data == "Y"){
 					alert("삭제되었습니다.")
-					location.href = "/board/list";
+					location.href = "/list";
 				}
 			},
 			error: function(data){
@@ -123,7 +123,7 @@ function fn_search(){
 	} else {
 		$('#search-pg').val('1'); // 검색시 무조건 1페이지로 이동
 		var f = $('#list-search-frm')
-		f.attr("action", "/board/list");
+		f.attr("action", "/list");
 		f.submit();
 	}
 }

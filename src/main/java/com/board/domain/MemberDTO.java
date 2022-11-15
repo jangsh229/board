@@ -15,6 +15,8 @@ import lombok.Data;
 @Component
 @Data
 public class MemberDTO implements UserDetails{
+	private static final long serialVersionUID = 1L;
+	
 	private int mem_seq;
 	private String mem_id;
 	private String mem_pwd;

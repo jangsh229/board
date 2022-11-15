@@ -165,7 +165,7 @@ function fn_refreshReply(){
 	var param = formData.serialize();
 
     // jQuery.load()로 댓글 목록 구역만 load
-	$('#refresh-area').load("/board/detail?"+param+" #refresh-area");
+	$('#refresh-area').load("/detail?"+param+" #refresh-area");
 	
     // load 후 댓글 입력란 비우고 커서 포커스 아웃 시키기
 	editor.setData('');

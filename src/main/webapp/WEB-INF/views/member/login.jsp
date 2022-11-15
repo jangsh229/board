@@ -9,9 +9,10 @@
 <div class="in-content"> 
     <div class="block-center">
         <a href="/" class="header__logo">
-            <h1>💙BOARD</h1>
+            <img src="${path}/resources/images/board_logo.png" alt="BOARD Logo">
+            <h1>BOARD</h1>
         </a>
-        <h2 class="text-center mt-05">BOARD에 오신 것을 환영합니다.</h2>
+        <h2 class="text-center">BOARD에 오신 것을 환영합니다.</h2>
         <p class="text-center mt-05"></p>
         <form id="login-form">
             <div>
